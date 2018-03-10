@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.7
+FROM alpine:3.7
 MAINTAINER Michael Ruettgers <michael@ruettgers.eu>
 
 ENV BUILD_PACKAGES \
@@ -38,4 +38,6 @@ RUN set -xe && \
   rm -rf /tmp/shairport-sync && \
   apk --no-cache --purge del ${BUILD_PACKAGES}
 
-CMD [ 'shairport-sync' ]
+COPY ../../files/ /
+
+ENTRYPOINT ["/docker/docker-entrypoint.sh"]
