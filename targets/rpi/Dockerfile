@@ -16,6 +16,7 @@ ENV BUILD_PACKAGES \
 
 ENV PACKAGES \
   libdaemon \
+  libgcc \
   popt \
   libressl \
   soxr \
