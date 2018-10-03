@@ -22,6 +22,8 @@ ENV PACKAGES \
   soxr \
   libconfig
 
+COPY qemu-arm-static /usr/bin
+
 RUN set -xe && \
   apk --no-cache add ${BUILD_PACKAGES} ${PACKAGES} && \
   cd /tmp && \
