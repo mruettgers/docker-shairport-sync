@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.7
+FROM arm32v7/alpine:3
 MAINTAINER Michael Ruettgers <michael@ruettgers.eu>
 
 ENV BUILD_PACKAGES \
@@ -21,8 +21,6 @@ ENV PACKAGES \
   libressl \
   soxr \
   libconfig
-
-COPY qemu-arm-static /usr/bin
 
 RUN set -xe && \
   apk --no-cache add ${BUILD_PACKAGES} ${PACKAGES} && \
