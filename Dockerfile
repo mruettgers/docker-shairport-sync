@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine
 MAINTAINER Michael Ruettgers <michael@ruettgers.eu>
 
 ENV BUILD_PACKAGES \
@@ -16,6 +16,7 @@ ENV BUILD_PACKAGES \
 
 ENV PACKAGES \
   libdaemon \
+  libgcc \
   popt \
   libressl \
   soxr \
@@ -24,7 +25,7 @@ ENV PACKAGES \
 RUN set -xe && \
   apk --no-cache add ${BUILD_PACKAGES} ${PACKAGES} && \
   cd /tmp && \
-  git clone --recursive https://github.com/mikebrady/shairport-sync.git && \
+  git clone --depth=1 --recursive https://github.com/mikebrady/shairport-sync.git && \
   cd /tmp/shairport-sync && \
   autoreconf -i -f && \
   ./configure \
@@ -38,6 +39,5 @@ RUN set -xe && \
   rm -rf /tmp/shairport-sync && \
   apk --no-cache --purge del ${BUILD_PACKAGES}
 
-COPY ./files/ /
 
-ENTRYPOINT ["/docker/docker-entrypoint.sh"]
+CMD [ "shairport-sync" ]
