@@ -40,4 +40,4 @@ RUN set -xe && \
   apk --no-cache --purge del ${BUILD_PACKAGES}
 
 
-CMD [ "shairport-sync" ]
+ENTRYPOINT [ "shairport-sync" ]
